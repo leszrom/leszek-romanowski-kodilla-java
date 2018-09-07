@@ -1,0 +1,13 @@
+package com.kodilla.testing.collection;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
+
+public class OddNumbersExterminator {
+    public ArrayList<Integer> exterminateOdd(ArrayList<Integer> integerList) {
+        for (int i = 0; i < integerList.size(); i++)
+            if (integerList.get(i) % 2 != 0) integerList.remove(i);
+        return integerList;
+    }
+}
