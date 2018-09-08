@@ -50,7 +50,7 @@ public class CollectionTestSuite {
         ArrayList<Integer> integersList = new ArrayList<Integer>();
         ArrayList<Integer> evenIntegersList = new ArrayList<Integer>();
 
-        int[] allNumbers = {-4, -3, -2, -1, 0, 1, 2, 3, 4};
+        int[] allNumbers = {-4, -3, -2, -1, 0, 1, 2, 3, 5, 7, 4};
         for (int number : allNumbers) integersList.add(number);
 
         int[] evenNumbers = {-4, -2, 0, 2, 4};
