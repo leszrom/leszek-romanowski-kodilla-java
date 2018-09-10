@@ -5,21 +5,25 @@ import java.util.ArrayList;
 public class ShapeCollector {
     private ArrayList<Shape> figures = new ArrayList<Shape>();
 
-
     public void addFigure(Shape shape) {
-        //
+        figures.add(shape);
     }
 
     public boolean removeFigure(Shape shape) {
-        //
-        return true;
+        if (figures.contains(shape)) {
+            figures.remove(shape);
+            return true;
+        }
+        return false;
     }
 
-    public Shape getFigure(int n) {
+    public Shape getFigure(int figureNumber) {
+        if (figureNumber >=0 && figureNumber < figures.size())
+            return figures.get(figureNumber);
         return null;
     }
 
-    public int getFigureQuantity(){
+    public int getFigureQuantity() {
         return figures.size();
     }
 }

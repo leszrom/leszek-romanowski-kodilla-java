@@ -2,7 +2,7 @@ package com.kodilla.testing.shape;
 
 import org.junit.*;
 
-public class ShapeCollectorTestSiut {
+public class ShapeCollectorTestSuite {
     private static int testCounter = 0;
 
     @BeforeClass
