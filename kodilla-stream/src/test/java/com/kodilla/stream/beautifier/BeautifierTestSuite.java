@@ -39,8 +39,7 @@ public class BeautifierTestSuite {
         //Given
         PoemBeautifier poemBeautifier = new PoemBeautifier();
         //When
-        String shortenedAndUppercaseDecorated = poemBeautifier.beautify("john smith", textToDecorate -> textToDecorate.substring(0, 4)
-                .toUpperCase());
+        String shortenedAndUppercaseDecorated = poemBeautifier.beautify("john smith", textToDecorate -> textToDecorate.substring(0, 4).toUpperCase());
         //Then
         Assert.assertEquals("JOHN", shortenedAndUppercaseDecorated);
     }

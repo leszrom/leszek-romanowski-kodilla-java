@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kodilla.stream.beautifier.BeautifierTestSuite" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-09-14T08:57:50" hostname="DESKTOP-B7MLSCJ" time="0.009">
+  <properties/>
+  <testcase name="should_return_text_shortened_and_uppercase" classname="com.kodilla.stream.beautifier.BeautifierTestSuite" time="0.005"/>
+  <testcase name="should_return_text_with_uppercase_all_letters" classname="com.kodilla.stream.beautifier.BeautifierTestSuite" time="0.0"/>
+  <testcase name="should_return_text_with_ABC_added" classname="com.kodilla.stream.beautifier.BeautifierTestSuite" time="0.001"/>
+  <testcase name="should_return_text_with_uppercase_first_letters" classname="com.kodilla.stream.beautifier.BeautifierTestSuite" time="0.001"/>
+  <system-out><![CDATA[Decorated text: JOHN
+Decorated text: JOHN SMITH
+Decorated text: ABC-john smith-ABC
+Decorated text: John Smith
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-09-13T10:48:18" hostname="DESKTOP-B7MLSCJ" time="0.017">
+<testsuite name="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-09-14T08:57:51" hostname="DESKTOP-B7MLSCJ" time="0.022">
   <properties/>
-  <testcase name="testStatisticsWithoutComments" classname="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" time="0.012"/>
-  <testcase name="testCalculateAdvanceStatistics" classname="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" time="0.0"/>
-  <testcase name="testStatisticsWithoutPosts" classname="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" time="0.0"/>
+  <testcase name="testStatisticsWithoutComments" classname="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" time="0.017"/>
+  <testcase name="testCalculateAdvanceStatistics" classname="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" time="0.001"/>
+  <testcase name="testStatisticsWithoutPosts" classname="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" time="0.001"/>
   <testcase name="testStatisticsWithoutUsers" classname="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" time="0.0"/>
   <testcase name="testStatisticsLessCommentsThenPostsAndLessPostsThenUsers" classname="com.kodilla.testing.forum.statistics.AdvanceStatisticsTestSuite" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
