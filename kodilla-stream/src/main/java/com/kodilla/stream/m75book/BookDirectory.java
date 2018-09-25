@@ -1,4 +1,4 @@
-package com.kodilla.stream.m73book;
+package com.kodilla.stream.m75book;
 
 import java.util.ArrayList;
 import java.util.List;

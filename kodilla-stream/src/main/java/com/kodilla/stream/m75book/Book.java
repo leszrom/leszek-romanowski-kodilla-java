@@ -1,4 +1,4 @@
-package com.kodilla.stream.m73book;
+package com.kodilla.stream.m75book;
 
 public final class Book {
     private final String author;
