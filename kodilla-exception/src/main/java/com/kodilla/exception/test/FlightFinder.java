@@ -29,7 +29,6 @@ public class FlightFinder {
         } else if (arrival.size() == 0) {
             throw new RouteNotFoundException("Arrival airport not found");
         }
-
         System.out.println(flight);
         return true;
     }
