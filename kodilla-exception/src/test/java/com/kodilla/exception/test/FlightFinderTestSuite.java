@@ -4,6 +4,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.googlecode.catchexception.CatchException.caughtException;
+import static com.googlecode.catchexception.CatchException.verifyException;
+
+
 public class FlightFinderTestSuite {
     private static int testCounter = 0;
 
@@ -13,61 +17,49 @@ public class FlightFinderTestSuite {
     }
 
     @Test
-    public void should_return_true_case_both_airports_found() {
+    public void should_return_true_case_both_airports_found() throws Exception {
         //Given
         FlightFinder flightFinder = new FlightFinder();
         Flight flight = new Flight("Modlin Airport", "Warsaw Chopin Airport");
         //When
-        try {
-            boolean found = flightFinder.findFlight(flight);
-            //Then
-
-            Assert.assertEquals(true, found);
-
-        } catch (RouteNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+        boolean found = flightFinder.findFlight(flight);
+        //Then
+        Assert.assertTrue(found);
     }
+
     @Test
-    public void should_throw_exception_case_arrival_airport_not_exist() {
+    public void should_throw_exception_case_arrival_airport_not_exist() throws Exception {
         //Given
         FlightFinder flightFinder = new FlightFinder();
         Flight flight = new Flight("Modlin Airport", "Not Exist");
         //When
-        try {
-            boolean found = flightFinder.findFlight(flight);
-        } catch (RouteNotFoundException e) {
-            System.out.println(e.getMessage());
-            //Then
-            Assert.assertEquals("Arrival airport not found", e.getMessage());
-        }
+        verifyException(flightFinder).findFlight(flight);
+        //Then
+        assert caughtException() instanceof RouteNotFoundException;
+        Assert.assertEquals("Arrival airport not found", caughtException().getMessage());
     }
+
     @Test
-    public void should_throw_exception_case_departure_airport_not_available() {
+    public void should_throw_exception_case_departure_airport_not_available() throws Exception {
         //Given
         FlightFinder flightFinder = new FlightFinder();
         Flight flight = new Flight("Poznan Lawica Airport", "Modlin Airport");
         //When
-        try {
-            boolean found = flightFinder.findFlight(flight);
-        } catch (RouteNotFoundException e) {
-            System.out.println(e.getMessage());
-            //Then
-            Assert.assertEquals("Departure airport not found", e.getMessage());
-        }
+        verifyException(flightFinder).findFlight(flight);
+        //Then
+        assert caughtException() instanceof RouteNotFoundException;
+        Assert.assertEquals("Departure airport not found", caughtException().getMessage());
     }
+
     @Test
-    public void should_throw_exception_case_both_airport_not_found() {
+    public void should_throw_exception_case_both_airport_not_found() throws Exception {
         //Given
         FlightFinder flightFinder = new FlightFinder();
         Flight flight = new Flight("Not exist", "Poznan Lawica Airport");
         //When
-        try {
-            boolean found = flightFinder.findFlight(flight);
-        } catch (RouteNotFoundException e) {
-            System.out.println(e.getMessage());
-            //Then
-            Assert.assertEquals("Departure and arrival airports not found", e.getMessage());
-        }
+        verifyException(flightFinder).findFlight(flight);
+        //Then
+        assert caughtException() instanceof RouteNotFoundException;
+        Assert.assertEquals("Departure and arrival airports not found", caughtException().getMessage());
     }
 }
