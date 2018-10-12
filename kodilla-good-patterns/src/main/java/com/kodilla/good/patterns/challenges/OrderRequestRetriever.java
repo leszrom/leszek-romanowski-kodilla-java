@@ -1,7 +1,7 @@
 package com.kodilla.good.patterns.challenges;
 
 public class OrderRequestRetriever {
-    public OrderRequest retrieve() {
+    public OrderRequest retrieveOrderRequest() {
         User user = new User("John", "Smith", "john_smith@mail.com");
 
         Product product = new Product(432,"Brash", 12.40);
