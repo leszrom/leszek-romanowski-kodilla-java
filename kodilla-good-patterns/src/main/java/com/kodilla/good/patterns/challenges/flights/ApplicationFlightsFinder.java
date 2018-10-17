@@ -1,6 +1,5 @@
 package com.kodilla.good.patterns.challenges.flights;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class ApplicationFlightsFinder {
@@ -22,13 +21,11 @@ public class ApplicationFlightsFinder {
         flightFinderService.printDirectFlights(flightsTo);
 
         System.out.println("Direct flights " + from + "-" + to + ":");
-        HashSet<Flight> directFlightsFromTo = flightFinderService.getDirectFlights(from, to);
-        flightFinderService.printDirectFlights(directFlightsFromTo);
+        HashSet<Flight> flightsFromTo = flightFinderService.getDirectFlights(from, to);
+        flightFinderService.printDirectFlights(flightsFromTo);
 
         System.out.println("Combined flights " + from + "-" + to + ":");
-        HashMap<Flight, Flight> combinedFlightsFromTo = flightFinderService.getCombinedFlights(from, to);
+        HashSet<CombinedFlight> combinedFlightsFromTo = flightFinderService.getCombinedFlights(from, to);
         flightFinderService.printCombinedFlights(combinedFlightsFromTo);
     }
-
-
 }
