@@ -1,6 +1,5 @@
 package com.kodilla.good.patterns.challenges.flights;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
@@ -11,8 +10,8 @@ public class FlightFinderService {
         this.flightsBoard = flightsBoard;
     }
 
-    public HashMap<Flight, Flight> getCombinedFlights(String departureAirport, String arrivalAirport) {
-        HashMap<Flight, Flight> combinedFlights = new HashMap<>();
+    public HashSet<CombinedFlight> getCombinedFlights(String departureAirport, String arrivalAirport) {
+        HashSet<CombinedFlight> combinedFlights = new HashSet<>();
 
         HashSet<Flight> flightsFrom = getFlightsFrom(departureAirport);
         if (flightsFrom.isEmpty()) return combinedFlights;
@@ -24,7 +23,7 @@ public class FlightFinderService {
         for (Flight flightFrom : flightsFrom) {
             for (Flight flightTo : flightsTo) {
                 if (flightFrom.getArrivalAirport().equals(flightTo.getDepartureAirport())) {
-                    combinedFlights.put(flightFrom, flightTo);
+                    combinedFlights.add(new CombinedFlight(flightFrom, flightTo));
                 }
             }
         }
@@ -62,8 +61,8 @@ public class FlightFinderService {
         System.out.println();
     }
 
-    public void printCombinedFlights(HashMap<Flight, Flight> combinedFlights) {
-        combinedFlights.entrySet().forEach(System.out::println);
+    public void printCombinedFlights(HashSet<CombinedFlight> combinedFlights) {
+        combinedFlights.forEach(System.out::println);
         System.out.println();
     }
 }
