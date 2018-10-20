@@ -1,8 +1,7 @@
 package com.kodilla.patterns;
 
+import com.kodilla.patterns.singleton.SettingsFileEngine;
 import org.junit.*;
-
-import static org.junit.Assert.*;
 
 public class SettingsFileEngineTestSuite {
 
