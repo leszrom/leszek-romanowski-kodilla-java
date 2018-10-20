@@ -11,14 +11,6 @@ public class BoardConfig {
     Board getBoard() {
         return new Board(getToDoList(), getInProgressList(), getDoneList());
     }
-//    @Bean
-//    @Scope("prototype")
-//    public TaskList getTaskList(){
-//        return new TaskList();
-////    }
-    // Próbowałem jw. i w getBoard() przywołać getTaskList trzy razy i zadziałało (tzn. testy przeszły),
-    // ale jak pobrałem listę beanów z kontenera to pokazł tylko jedną instancę z getTaskList().
-    // Zastanawiam się które rozwiązanie jest właściwe.
 
     @Bean(name = "toDoList")
     @Scope("prototype")
