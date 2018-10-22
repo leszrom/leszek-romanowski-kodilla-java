@@ -1,11 +1,12 @@
-package com.kodilla.patterns.prototype;
+package com.kodilla.patterns.prototype.board;
 
+import com.kodilla.patterns.prototype.board.Board;
+import com.kodilla.patterns.prototype.board.Task;
+import com.kodilla.patterns.prototype.board.TaskList;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
-
-import static org.junit.Assert.*;
 
 public class BoardTestSuite {
 

@@ -1,4 +1,4 @@
-package com.kodilla.patterns.prototype;
+package com.kodilla.patterns.prototype.board;
 
 public final class Task {
     private final String name;

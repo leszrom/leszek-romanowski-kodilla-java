@@ -1,4 +1,4 @@
-package com.kodilla.patterns.prototype;
+package com.kodilla.patterns.prototype.board;
 
 public class Prototype<T> implements Cloneable {
     @Override
