@@ -1,8 +1,5 @@
 package com.kodilla.patterns.prototype.board;
 
-import com.kodilla.patterns.prototype.board.Board;
-import com.kodilla.patterns.prototype.board.Task;
-import com.kodilla.patterns.prototype.board.TaskList;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +10,7 @@ public class BoardTestSuite {
     @Test
     public void should_return_toString_result() {
         //Given
-        //creating the TaskList fot todos
+        //creating the TaskList for todos
         TaskList listToDo = new TaskList("To Do Tasks");
         IntStream.iterate(1, n -> n + 1)
                 .limit(10)
