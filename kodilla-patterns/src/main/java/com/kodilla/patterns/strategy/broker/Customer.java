@@ -1,4 +1,4 @@
-package com.kodilla.patterns.strategy;
+package com.kodilla.patterns.strategy.broker;
 
 public class Customer {
     private final String name;

@@ -1,6 +1,7 @@
-package com.kodilla.patterns.strategy;
+package com.kodilla.patterns.strategy.broker.customers;
 
-import com.kodilla.patterns.strategy.predictors.AggressivePredictor;
+import com.kodilla.patterns.strategy.broker.Customer;
+import com.kodilla.patterns.strategy.broker.predictors.AggressivePredictor;
 
 public class IndividualYoungCustomer extends Customer {
     public IndividualYoungCustomer(final String name) {

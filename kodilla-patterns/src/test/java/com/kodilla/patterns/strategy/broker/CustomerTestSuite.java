@@ -1,6 +1,9 @@
-package com.kodilla.patterns.strategy;
+package com.kodilla.patterns.strategy.broker;
 
-import com.kodilla.patterns.strategy.predictors.AggressivePredictor;
+import com.kodilla.patterns.strategy.broker.customers.CorporateCustomer;
+import com.kodilla.patterns.strategy.broker.customers.IndividualCustomer;
+import com.kodilla.patterns.strategy.broker.customers.IndividualYoungCustomer;
+import com.kodilla.patterns.strategy.broker.predictors.AggressivePredictor;
 import org.junit.Assert;
 import org.junit.Test;
 

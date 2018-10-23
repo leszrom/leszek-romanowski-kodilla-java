@@ -1,6 +1,6 @@
-package com.kodilla.patterns.strategy.predictors;
+package com.kodilla.patterns.strategy.broker.predictors;
 
-import com.kodilla.patterns.strategy.BuyPredictor;
+import com.kodilla.patterns.strategy.broker.BuyPredictor;
 
 public class ConservativePredictor implements BuyPredictor {
     @Override
