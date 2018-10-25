@@ -8,9 +8,9 @@ public class BigmacTestSuite {
     public void should_create_burger_with_indicated_products() {
         //Given
         Bigmac bigmac = new Bigmac.BigmacBuilder()
-                .Bread(Bread.BUN_SESAME)
+                .bread(Bread.BUN_SESAME)
                 .burgers(2)
-                .Sauce(Sauce.BARBECUE)
+                .sauce(Sauce.BARBECUE)
                 .ingredients(Ingredient.BACON)
                 .ingredients(Ingredient.CHILLI)
                 .ingredients(Ingredient.CHEESE)

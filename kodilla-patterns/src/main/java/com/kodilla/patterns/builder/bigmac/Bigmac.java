@@ -15,7 +15,7 @@ public final class Bigmac {
         private Sauce sauce;
         private List<Ingredient> ingredients = new ArrayList<>();
 
-        public BigmacBuilder Bread(String type) {
+        public BigmacBuilder bread(String type) {
             this.bread = new Bread(type);
             return this;
         }
@@ -25,7 +25,7 @@ public final class Bigmac {
             return this;
         }
 
-        public BigmacBuilder Sauce(String taste) {
+        public BigmacBuilder sauce(String taste) {
             this.sauce = new Sauce(taste);
             return this;
         }
