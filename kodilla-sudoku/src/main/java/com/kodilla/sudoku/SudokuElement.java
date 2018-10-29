@@ -13,11 +13,19 @@ public class SudokuElement {
         return possibleValues;
     }
 
-    public void setValue(final int value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
     public void setPossibleValues(final int[] possibleValues) {
         this.possibleValues = possibleValues;
+    }
+
+    @Override
+    public String toString() {
+        String s = " " + value + " ";
+        if (value == EMPTY)
+            s = "   ";
+        return s;
     }
 }
