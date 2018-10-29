@@ -6,7 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SudokuBoard {
-    private List<SudokuRow> rows = new ArrayList<>(Collections.nCopies(9, new SudokuRow()));
+    private List<SudokuRow> rows = new ArrayList<>(9);
+
+    public SudokuBoard() {
+        for (int i = 0; i < 9; i++) {
+            rows.add(new SudokuRow());
+        }
+    }
 
     public List<SudokuRow> getRows() {
         return rows;
@@ -16,6 +22,5 @@ public class SudokuBoard {
     public String toString() {
         return rows.stream()
                 .map(SudokuRow::toString)
-                .collect(Collectors.joining("\n","","\n --- --- --- --- --- --- --- --- ---"));
     }
 }
