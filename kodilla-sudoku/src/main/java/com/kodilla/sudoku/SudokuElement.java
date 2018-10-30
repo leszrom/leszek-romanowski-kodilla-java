@@ -9,6 +9,7 @@ public class SudokuElement {
     private List<Integer> possibleValues = new ArrayList<>();
     private final int rowNumber;
     private final int columnNumber;
+    private final int blockNumber;
 
     public SudokuElement(final int rowNumber, final int columnNumber) {
         for (int n = 1; n <= 9; n++) {
@@ -16,6 +17,7 @@ public class SudokuElement {
         }
         this.rowNumber = rowNumber;
         this.columnNumber = columnNumber;
+        this.blockNumber = SudokuBlock.getBlockNumber(rowNumber, columnNumber);
     }
 
     public int getValue() {
@@ -28,6 +30,10 @@ public class SudokuElement {
 
     public int getColumnNumber() {
         return columnNumber;
+    }
+
+    public int getBlockNumber() {
+        return blockNumber;
     }
 
     public List<Integer> getPossibleValues() {
