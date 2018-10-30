@@ -9,7 +9,7 @@ public class SudokuBoard {
 
     public SudokuBoard() {
         for (int n = 1; n <= 9; n++) {
-            rows.add(new SudokuRow(1));
+            rows.add(new SudokuRow(n));
         }
     }
 
