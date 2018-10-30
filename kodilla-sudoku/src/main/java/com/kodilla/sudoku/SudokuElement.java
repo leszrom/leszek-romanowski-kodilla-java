@@ -1,15 +1,24 @@
 package com.kodilla.sudoku;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SudokuElement {
     public static final int EMPTY = -1;
     private int value = EMPTY;
-    private Integer[] possibleValues = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private List<Integer> possibleValues = new ArrayList<>();
+
+    public SudokuElement() {
+        for (int n = 1; n <= 9; n++) {
+            possibleValues.add(n);
+        }
+    }
 
     public int getValue() {
         return value;
     }
 
-    public Integer[] getPossibleValues() {
+    public List<Integer> getPossibleValues() {
         return possibleValues;
     }
 

@@ -1,7 +1,6 @@
 package com.kodilla.sudoku;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,11 +19,10 @@ public class SudokuBoard {
 
     public boolean insertValue(int column, int row, int value) {
         SudokuElement element;
-
         if (1 <= column && column <= 9) {
             if (1 <= row && row <= 9) {
                 element = rows.get(row - 1).getElements().get(column - 1);
-                if (Arrays.asList(element.getPossibleValues()).contains(value)) {
+                if (element.getPossibleValues().contains(value)) {
                     element.setValue(value);
                     return true;
                 }
