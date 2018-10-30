@@ -3,13 +3,13 @@ package com.kodilla.sudoku;
 public class SudokuElement {
     public static final int EMPTY = -1;
     private int value = EMPTY;
-    private int[] possibleValues = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private Integer[] possibleValues = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     public int getValue() {
         return value;
     }
 
-    public int[] getPossibleValues() {
+    public Integer[] getPossibleValues() {
         return possibleValues;
     }
 
@@ -17,7 +17,7 @@ public class SudokuElement {
         this.value = value;
     }
 
-    public void setPossibleValues(final int[] possibleValues) {
+    public void setPossibleValues(final Integer[] possibleValues) {
         this.possibleValues = possibleValues;
     }
 
