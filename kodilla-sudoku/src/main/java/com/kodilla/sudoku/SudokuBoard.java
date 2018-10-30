@@ -17,7 +17,7 @@ public class SudokuBoard {
         return rows;
     }
 
-    public boolean insertValue(int column, int row, int value) {
+    public boolean insertValue(int row, int column, int value) {
         SudokuElement element;
         if (1 <= column && column <= 9) {
             if (1 <= row && row <= 9) {
@@ -31,9 +31,29 @@ public class SudokuBoard {
         return false;
     }
 
+    public void updatePossibleValues(int row, int column, int value) {
+        int block = SudokuBlock.getBlockNumber(row, column);
+
+        getRows().stream()
+                .flatMap(sudokuRow -> sudokuRow.getElements().stream())
+                .filter(sudokuElement -> sudokuElement.getColumnNumber() == column)
+                .forEach(sudokuElement -> sudokuElement.deleteFromPossibleValues(value));
+
+        getRows().stream()
+                .flatMap(sudokuRow -> sudokuRow.getElements().stream())
+                .filter(sudokuElement -> sudokuElement.getRowNumber() == row)
+                .forEach(sudokuElement -> sudokuElement.deleteFromPossibleValues(value));
+
+        getRows().stream()
+                .flatMap(sudokuRow -> sudokuRow.getElements().stream())
+                .filter(sudokuElement -> sudokuElement.getBlockNumber() == block)
+                .forEach(sudokuElement -> sudokuElement.deleteFromPossibleValues(value));
+    }
+
     @Override
     public String toString() {
         return rows.stream()
                 .map(SudokuRow::toString)
+                .collect(Collectors.joining("\n", "", "\n --- --- --- --- --- --- --- --- ---"));
     }
 }

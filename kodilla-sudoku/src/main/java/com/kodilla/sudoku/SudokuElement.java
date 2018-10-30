@@ -44,8 +44,8 @@ public class SudokuElement {
         this.value = value;
     }
 
-    public void setPossibleValues(final Integer[] possibleValues) {
-        this.possibleValues = possibleValues;
+    public void deleteFromPossibleValues(int value) {
+        possibleValues.remove(Integer.valueOf(value));
     }
 
     @Override

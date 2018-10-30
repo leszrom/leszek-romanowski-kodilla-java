@@ -19,10 +19,14 @@ public class SudokuRow {
         return elements;
     }
 
+    public int getRowNumber() {
+        return rowNumber;
+    }
+
     @Override
     public String toString() {
         return elements.stream()
                 .map(SudokuElement::toString)
-                .collect(Collectors.joining("|"," --- --- --- --- --- --- --- --- ---\n|","|"));
+                .collect(Collectors.joining("|", " --- --- --- --- --- --- --- --- ---\n|", "|"));
     }
 }

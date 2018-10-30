@@ -31,7 +31,7 @@ public class SudokuBoardTest {
         System.out.println(board);
         //Then
         Assert.assertTrue(result);
-        Assert.assertEquals(2, board.getRows().get(8 - 1).getElements().get(2 - 1).getValue());
+        Assert.assertEquals(2, board.getRows().get(2 - 1).getElements().get(8 - 1).getValue());
     }
 
     @Test
@@ -46,5 +46,31 @@ public class SudokuBoardTest {
         Assert.assertFalse(isRowInRange);
         Assert.assertFalse(isColumnInRange);
         Assert.assertFalse(isValueInRange);
+    }
+
+    @Test
+    public void should_delete_inserted_value_from_possible_values_in_fields_in_row_column_and_block() {
+        //Given
+        SudokuBoard board = new SudokuBoard();
+        int row = 2;
+        int column = 4;
+        int value = 3;
+        board.updatePossibleValues(row, column, value);
+        //When
+        SudokuElement elementFromRow = board.getRows().get(row-1).getElements().get(8);
+        SudokuElement elementFromColumn = board.getRows().get(5).getElements().get(column-1);
+        SudokuElement elementFromBlock = board.getRows().get(2).getElements().get(5);
+        SudokuElement elementNoInfluence = board.getRows().get(5).getElements().get(5);
+
+        //Then
+        System.out.println(elementFromRow.getPossibleValues());
+        System.out.println(elementFromColumn.getPossibleValues());
+        System.out.println(elementFromBlock.getPossibleValues());
+        System.out.println(elementNoInfluence.getPossibleValues());
+
+        Assert.assertFalse(elementFromRow.getPossibleValues().contains(3));
+        Assert.assertFalse(elementFromColumn.getPossibleValues().contains(3));
+        Assert.assertFalse(elementFromBlock.getPossibleValues().contains(3));
+        Assert.assertTrue(elementNoInfluence.getPossibleValues().contains(3));
     }
 }
