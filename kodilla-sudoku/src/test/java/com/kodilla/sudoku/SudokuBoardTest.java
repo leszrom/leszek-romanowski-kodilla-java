@@ -23,15 +23,19 @@ public class SudokuBoardTest {
     }
 
     @Test
-    public void should_return_true_and_insert_value_to_board() {
+    public void should_return_true_and_insert_value_to_board_and_empty_list_of_possible_values() {
         //Given
         SudokuBoard board = new SudokuBoard();
         //When
         boolean result = board.insertValue(2, 8, 2);
+        SudokuElement element = board.getRows().get(1).getElements().get(7);
+
         System.out.println(board);
+        System.out.println(element.getPossibleValues());
         //Then
         Assert.assertTrue(result);
-        Assert.assertEquals(2, board.getRows().get(2 - 1).getElements().get(8 - 1).getValue());
+        Assert.assertEquals(2, element.getValue());
+        Assert.assertEquals(0, element.getPossibleValues().size());
     }
 
     @Test

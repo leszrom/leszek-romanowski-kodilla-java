@@ -24,6 +24,7 @@ public class SudokuBoard {
                 element = rows.get(row - 1).getElements().get(column - 1);
                 if (element.getPossibleValues().contains(value)) {
                     element.setValue(value);
+                    element.getPossibleValues().removeAll(element.getPossibleValues());
                     return true;
                 }
             }
