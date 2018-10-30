@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 
 public class SudokuRow {
     private List<SudokuElement> elements = new ArrayList<>(9);
+    private int rowNumber;
 
-    public SudokuRow() {
-        for (int i = 0; i < 9; i++) {
-            elements.add(new SudokuElement());
+    public SudokuRow(final int rowNumber) {
+        for (int n = 1; n <= 9; n++) {
+            elements.add(new SudokuElement(rowNumber,n));
         }
+        this.rowNumber = rowNumber;
     }
 
     public List<SudokuElement> getElements() {

@@ -8,8 +8,8 @@ public class SudokuBoard {
     private List<SudokuRow> rows = new ArrayList<>(9);
 
     public SudokuBoard() {
-        for (int i = 0; i < 9; i++) {
-            rows.add(new SudokuRow());
+        for (int n = 1; n <= 9; n++) {
+            rows.add(new SudokuRow(1));
         }
     }
 
