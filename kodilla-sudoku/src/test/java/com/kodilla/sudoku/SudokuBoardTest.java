@@ -53,6 +53,17 @@ public class SudokuBoardTest {
     }
 
     @Test
+    public void should_return_false_if_element_already_has_inserted_value() {
+        //Given
+        SudokuBoard board = new SudokuBoard();
+        board.insertValue(7, 6, 5);
+        //When
+        boolean result = board.insertValue(7, 6, 5);
+        //Then
+        Assert.assertFalse(result);
+    }
+
+    @Test
     public void should_delete_inserted_value_from_possible_values_in_fields_in_row_column_and_block() {
         //Given
         SudokuBoard board = new SudokuBoard();
@@ -61,8 +72,8 @@ public class SudokuBoardTest {
         int value = 3;
         board.updatePossibleValues(row, column, value);
         //When
-        SudokuElement elementFromRow = board.getRows().get(row-1).getElements().get(8);
-        SudokuElement elementFromColumn = board.getRows().get(5).getElements().get(column-1);
+        SudokuElement elementFromRow = board.getRows().get(row - 1).getElements().get(8);
+        SudokuElement elementFromColumn = board.getRows().get(5).getElements().get(column - 1);
         SudokuElement elementFromBlock = board.getRows().get(2).getElements().get(5);
         SudokuElement elementNoInfluence = board.getRows().get(5).getElements().get(5);
 
