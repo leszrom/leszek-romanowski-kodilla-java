@@ -56,6 +56,30 @@ public class SudokuElement extends Prototype {
         return s;
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SudokuElement)) return false;
+
+        final SudokuElement element = (SudokuElement) o;
+
+        if (value != element.value) return false;
+        if (rowNumber != element.rowNumber) return false;
+        if (columnNumber != element.columnNumber) return false;
+        if (blockNumber != element.blockNumber) return false;
+        return possibleValues.equals(element.possibleValues);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = value;
+        result = 31 * result + possibleValues.hashCode();
+        result = 31 * result + rowNumber;
+        result = 31 * result + columnNumber;
+        result = 31 * result + blockNumber;
+        return result;
+    }
+
     protected SudokuElement deepCopy() throws CloneNotSupportedException {
         SudokuElement clonedElement = (SudokuElement) super.clone();
         clonedElement.possibleValues = new ArrayList<>(9);
