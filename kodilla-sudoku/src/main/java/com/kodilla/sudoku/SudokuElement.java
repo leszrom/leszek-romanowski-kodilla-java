@@ -3,13 +3,13 @@ package com.kodilla.sudoku;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SudokuElement {
-    public static final int EMPTY = -1;
+public class SudokuElement extends Prototype {
+    public static int EMPTY = -1;
     private int value = EMPTY;
-    private List<Integer> possibleValues = new ArrayList<>();
-    private final int rowNumber;
-    private final int columnNumber;
-    private final int blockNumber;
+    private List<Integer> possibleValues = new ArrayList<>(9);
+    private int rowNumber;
+    private int columnNumber;
+    private int blockNumber;
 
     public SudokuElement(final int rowNumber, final int columnNumber) {
         for (int n = 1; n <= 9; n++) {
@@ -54,5 +54,12 @@ public class SudokuElement {
         if (value == EMPTY)
             s = "   ";
         return s;
+    }
+
+    protected SudokuElement deepCopy() throws CloneNotSupportedException {
+        SudokuElement clonedElement = (SudokuElement) super.clone();
+        clonedElement.possibleValues = new ArrayList<>(9);
+        clonedElement.possibleValues.addAll(possibleValues);
+        return clonedElement;
     }
 }
