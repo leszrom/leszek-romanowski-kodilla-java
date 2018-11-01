@@ -130,4 +130,21 @@ public class SudokuBoardTestSuite {
         Assert.assertFalse(elementFromBlock.getPossibleValues().contains(3));
         Assert.assertTrue(elementNoInfluence.getPossibleValues().contains(3));
     }
+
+    @Test
+    public void should_return_DeepCopy_of_sudoku_board()throws CloneNotSupportedException {
+        //Given
+        SudokuBoard board = new SudokuBoard();
+        SudokuBoard clonedBoard = board.deepCopy();
+        SudokuRow theRow = new SudokuRow(5);
+        SudokuElement theElement = new SudokuElement(7, 3);
+        //When
+        clonedBoard.getRows().remove(theRow);
+        clonedBoard.getRows().get(6).getElements().remove(theElement);
+        //Then
+        Assert.assertTrue(board.getRows().contains(theRow));
+        Assert.assertTrue(board.getRows().get(6).getElements().contains(theElement));
+        Assert.assertFalse(clonedBoard.getRows().contains(theRow));
+        Assert.assertFalse(clonedBoard.getRows().get(6).getElements().contains(theElement));
+    }
 }

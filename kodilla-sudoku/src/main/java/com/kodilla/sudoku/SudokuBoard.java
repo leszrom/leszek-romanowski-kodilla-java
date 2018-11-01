@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SudokuBoard {
+public class SudokuBoard extends Prototype {
     private List<SudokuRow> rows = new ArrayList<>(9);
 
     public SudokuBoard() {
@@ -56,5 +56,14 @@ public class SudokuBoard {
         return rows.stream()
                 .map(SudokuRow::toString)
                 .collect(Collectors.joining("\n", "", "\n --- --- --- --- --- --- --- --- ---"));
+    }
+
+    public SudokuBoard deepCopy() throws CloneNotSupportedException {
+        SudokuBoard cloneBoard = (SudokuBoard) super.clone();
+        cloneBoard.rows = new ArrayList<>(9);
+        for (SudokuRow theRow : rows) {
+            cloneBoard.rows.add(theRow.deepCopy());
+        }
+        return cloneBoard;
     }
 }
