@@ -25,6 +25,7 @@ public class SudokuBoard extends Prototype {
                 if (element.getPossibleValues().contains(value)) {
                     element.setValue(value);
                     element.getPossibleValues().removeAll(element.getPossibleValues());
+                    updatePossibleValues(row,column,value);
                     return true;
                 }
             }
