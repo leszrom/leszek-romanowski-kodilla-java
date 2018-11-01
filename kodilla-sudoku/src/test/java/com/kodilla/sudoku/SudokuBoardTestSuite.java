@@ -7,19 +7,61 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
-public class SudokuBoardTest {
+public class SudokuBoardTestSuite {
+
+    public static SudokuBoard createSampleBoard() {
+
+        SudokuBoard board = new SudokuBoard();
+
+        board.insertValue(1, 2, 2);
+        board.insertValue(1, 4, 5);
+        board.insertValue(1, 6, 1);
+        board.insertValue(1, 8, 9);
+
+        board.insertValue(2, 1, 8);
+        board.insertValue(2, 4, 2);
+        board.insertValue(2, 6, 3);
+        board.insertValue(2, 9, 6);
+
+        board.insertValue(3, 2, 3);
+        board.insertValue(3, 5, 6);
+        board.insertValue(3, 8, 7);
+
+        board.insertValue(4, 3, 1);
+        board.insertValue(4, 7, 6);
+
+        board.insertValue(5, 1, 5);
+        board.insertValue(5, 2, 4);
+        board.insertValue(5, 8, 1);
+        board.insertValue(5, 9, 9);
+
+        board.insertValue(6, 3, 2);
+        board.insertValue(6, 7, 7);
+
+        board.insertValue(7, 2, 9);
+        board.insertValue(7, 5, 3);
+        board.insertValue(7, 8, 8);
+
+        board.insertValue(8, 1, 2);
+        board.insertValue(8, 4, 8);
+        board.insertValue(8, 6, 4);
+        board.insertValue(8, 9, 7);
+
+        board.insertValue(9, 2, 1);
+        board.insertValue(9, 4, 9);
+        board.insertValue(9, 6, 7);
+        board.insertValue(9, 8, 6);
+
+        return board;
+    }
 
     @Test
-    public void should_return_graphical_representation_of_empty_sudoku_board_and_with_example_value() {
+    public void should_return_graphical_representation_of_sample_sudoku_board() {
         //Given
-        SudokuBoard board = new SudokuBoard();
+        SudokuBoard board = SudokuBoardTestSuite.createSampleBoard();
         //When
-        System.out.println(board + "\n");
-        board.getRows().stream()
-                .flatMap(sudokuRow -> sudokuRow.getElements().stream())
-                .forEach(sudokuElement -> sudokuElement.setValue(3));
-        System.out.println(board);
         //Then
+        System.out.println(board);
     }
 
     @Test

@@ -6,7 +6,7 @@ public class SudokuAlgorithmTestSuite {
     @Test
     public void should_return_sample_sudoku_board() {
         //Given
-        System.out.println(SudokuAlgorithm.createSampleBoard());
+        System.out.println(SudokuBoardTestSuite.createSampleBoard());
         //When
 
         //Then
