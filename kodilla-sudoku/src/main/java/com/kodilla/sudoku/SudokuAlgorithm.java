@@ -17,7 +17,11 @@ public class SudokuAlgorithm {
                 .anyMatch(element -> element.getValue() == SudokuElement.EMPTY);
     }
 
-    public boolean solveSudoku() {
+    public boolean existEmptyElementWithoutAnyPossibleValue() {
+        return streamElements()
+                .filter(element -> element.getValue() == SudokuElement.EMPTY)
+                .anyMatch(element -> element.getPossibleValues().isEmpty());
+    }
 
 
 

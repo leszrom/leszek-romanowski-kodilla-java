@@ -44,4 +44,24 @@ public class SudokuAlgorithmTestSuite {
         Assert.assertTrue(algorithmSampleBoard.isNotSolved());
         Assert.assertFalse(algorithmFullBoard.isNotSolved());
     }
+
+    @Test
+    public void should_return_true_if_exist_empty_element_without_any_possible_value_to_insert() {
+        //Given
+        SudokuBoard board = new SudokuBoard();
+        SudokuAlgorithm algorithm = new SudokuAlgorithm(board);
+        //When
+        board.insertValue(1, 1, 1);
+        board.insertValue(1, 2, 2);
+        board.insertValue(1, 3, 3);
+        board.insertValue(1, 4, 4);
+        board.insertValue(1, 5, 5);
+        board.insertValue(1, 6, 6);
+        board.insertValue(1, 7, 7);
+        board.insertValue(1, 8, 8);
+        board.insertValue(2, 9, 9);
+        //Then
+        Assert.assertTrue(algorithm.existEmptyElementWithoutAnyPossibleValue());
+    }
+
 }
