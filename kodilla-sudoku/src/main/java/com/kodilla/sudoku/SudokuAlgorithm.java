@@ -17,6 +17,8 @@ public class SudokuAlgorithm {
                 .flatMap(row-> row.getElements().stream());
     }
 
+    public boolean isNotSolved() {
+        return streamElements()
                 .anyMatch(element -> element.getValue() == SudokuElement.EMPTY);
     }
 
@@ -47,8 +49,24 @@ public class SudokuAlgorithm {
         return insertedGuessedValue.orElse(false);
     }
 
-
-        return true;
+    public SudokuBoard solveSudoku() {
+        System.out.println("Given Sudoku board:");
+        System.out.println(board);
+        while (isNotSolved()) {
+            while (insertedWithoutGuessing()) {
+                while (existEmptyElementWithoutAnyPossibleValue()) {
+                    this.board = backtrack.pop().getUpdatedBoard();
+                }
+            }
+            if (isNotSolved()) {
+                if (!insertedGuessedValue()) {
+                    this.board = backtrack.pop().getUpdatedBoard();
+                }
+            }
+        }
+        System.out.println("\nSolved Sudoku board:");
+        System.out.println(board);
+        return board;
     }
 
     private SudokuElement addToBacktrack(SudokuBoard board, SudokuElement element){

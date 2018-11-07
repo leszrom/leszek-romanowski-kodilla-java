@@ -5,12 +5,23 @@ import org.junit.Test;
 
 public class SudokuAlgorithmTestSuite {
     @Test
-    public void should_return_sample_sudoku_board() {
+    public void should_return_solved_sudoku_board() {
         //Given
-        System.out.println(SudokuBoardTestSuite.createSampleBoard());
+        SudokuBoard board = SudokuBoardTestSuite.createSampleBoard();
+        SudokuAlgorithm algorithm = new SudokuAlgorithm(board);
         //When
-
+        algorithm.solveSudoku();
         //Then
+
+    }    @Test
+    public void should_return_solved_sudoku_board_when_board_is_empty() {
+        //Given
+        SudokuBoard board = new SudokuBoard();
+        SudokuAlgorithm algorithm = new SudokuAlgorithm(board);
+        //When
+        algorithm.solveSudoku();
+        //Then
+    }
 
     @Test
     public void should_return_stream_of_all_elements_from_board() {
@@ -63,5 +74,4 @@ public class SudokuAlgorithmTestSuite {
         //Then
         Assert.assertTrue(algorithm.existEmptyElementWithoutAnyPossibleValue());
     }
-
 }
