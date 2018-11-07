@@ -37,6 +37,15 @@ public class SudokuAlgorithm {
         return insertedWithoutGuessing.orElse(false);
     }
 
+    public boolean insertedGuessedValue() {
+        Optional<Boolean> insertedGuessedValue;
+        insertedGuessedValue = streamElements()
+                .filter(element -> element.getValue() == SudokuElement.EMPTY)
+                .findFirst()
+                .map(element -> addToBacktrack(board, element))
+                .map(element -> board.insertValue(element.getRowNumber(), element.getColumnNumber(), element.getPossibleValues().get(0)));
+        return insertedGuessedValue.orElse(false);
+    }
 
 
         return true;
