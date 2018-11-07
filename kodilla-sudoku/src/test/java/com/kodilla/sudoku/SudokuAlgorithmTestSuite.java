@@ -1,5 +1,6 @@
 package com.kodilla.sudoku;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class SudokuAlgorithmTestSuite {
@@ -11,6 +12,15 @@ public class SudokuAlgorithmTestSuite {
 
         //Then
 
+    @Test
+    public void should_return_stream_of_all_elements_from_board() {
+        //Given
+        SudokuBoard board = new SudokuBoard();
+        SudokuAlgorithm algorithm = new SudokuAlgorithm(board);
+        //When
+        long numberOfElements = algorithm.streamElements().count();
+        //Then
+        Assert.assertEquals(81,numberOfElements);
     }
 
     @Test
