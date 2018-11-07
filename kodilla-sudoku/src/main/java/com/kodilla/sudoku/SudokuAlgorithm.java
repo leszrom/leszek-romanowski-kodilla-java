@@ -26,6 +26,17 @@ public class SudokuAlgorithm {
                 .anyMatch(element -> element.getPossibleValues().isEmpty());
     }
 
+    public boolean insertedWithoutGuessing() {
+        Optional<Boolean> insertedWithoutGuessing;
+            insertedWithoutGuessing = streamElements()
+                    .filter(element -> element.getValue() == SudokuElement.EMPTY)
+                    .filter(element -> element.getPossibleValues().size() == 1)
+                    .findFirst()
+                    .map(element -> addToBacktrack(board, element))
+                    .map(element -> board.insertValue(element.getRowNumber(), element.getColumnNumber(), element.getPossibleValues().get(0)));
+        return insertedWithoutGuessing.orElse(false);
+    }
+
 
 
         return true;
