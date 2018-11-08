@@ -35,7 +35,7 @@ public class TaskDaoTestSuite {
     }
 
     @Test
-    public void shouldTaskDaoFindByDuration() {
+    public void testTaskDaoFindByDuration() {
         //Given
         Task task = new Task(DESCRIPTION, 7);
         taskDao.save(task);
