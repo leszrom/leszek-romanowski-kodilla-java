@@ -26,10 +26,12 @@ public class TaskFinancialDetails {
     public int getId() {
         return id;
     }
-    @Column(name="PRICE")
+
+    @Column(name = "PRICE")
     public BigDecimal getPrice() {
         return price;
     }
+
     @Column(name = "PAID")
     public boolean isPaid() {
         return paid;
