@@ -17,8 +17,6 @@ import java.math.BigDecimal;
 public class InvoiceDaoTestSuite {
     @Autowired
     private InvoiceDao invoiceDao;
-    @Autowired
-    private ProductDao productDao;
 
     @Test
     public void should_add_given_invoice_to_data_base() {
@@ -46,15 +44,17 @@ public class InvoiceDaoTestSuite {
         potItem.setInvoice(invoice);
 
         cup.getItems().add(cupItem);
-        plate.getItems().add(plateItem);
         pot.getItems().add(potItem);
+        plate.getItems().add(plateItem);
 
         //When
         invoiceDao.save(invoice);
-
         int invoiceId = invoice.getId();
 
         //Then
         Assert.assertNotEquals(0, invoiceId);
+
+        //CleanUp
+        invoiceDao.delete(invoiceId);
     }
 }
