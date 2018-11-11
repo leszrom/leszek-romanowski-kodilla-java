@@ -6,6 +6,27 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Task.retrieveLongTasks",
+                query = "FROM Task WHERE duration >10"
+        ),
+        @NamedQuery(
+                name = "Task.retrieveShortTasks",
+                query = "FROM Task WHERE duration <= 10"
+        ),
+        @NamedQuery(
+                name = "Task.retrieveTasksWithDurationLongerThan",
+                query = "FROM Task WHERE duration > :DURATION"
+        )
+})
+@NamedNativeQuery(
+        name = "Task.retrieveTasksWithEnoughTime",
+        query = "SELECT * FROM TASKS " +
+                "WHERE DATEDIFF(DATE_ADD(CREATED, INTERVAL DURATION DAY), NOW()) >5",
+        resultClass = Task.class
+)
+
 @Entity
 @Table(name = "TASKS")
 public class Task {
@@ -54,6 +75,7 @@ public class Task {
     public TaskFinancialDetails getTaskFinancialDetails() {
         return taskFinancialDetails;
     }
+
     @ManyToOne
     @JoinColumn(name = "TASKLIST_ID")
     public TaskList getTaskList() {
