@@ -5,6 +5,18 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retrieveCompaniesThatNamesStartWith",
+        query = "SELECT * FROM COMPANIES " +
+                "WHERE COMPANY_NAME REGEXP CONCAT(:FIRSTCHARS, '.*?')",
+        resultClass = Company.class
+)
+
+@NamedQuery(
+        name = "Company.retrieveCompaniesWithFirstThreeChars",
+        query = "FROM Company WHERE SUBSTRING (name,1,3) = :CHARS"
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
