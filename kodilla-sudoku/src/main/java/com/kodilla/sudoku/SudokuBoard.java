@@ -30,6 +30,7 @@ public class SudokuBoard extends Prototype {
                 }
             }
         }
+        System.out.println(UserInterface.CANT_INSERT + value);
         return false;
     }
 

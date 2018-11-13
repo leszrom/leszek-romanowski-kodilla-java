@@ -50,7 +50,6 @@ public class SudokuAlgorithm {
     }
 
     public SudokuBoard solveSudoku() {
-        System.out.println("Given Sudoku board:");
         System.out.println(board);
         while (isNotSolved()) {
             while (insertedWithoutGuessing()) {
@@ -64,7 +63,7 @@ public class SudokuAlgorithm {
                 }
             }
         }
-        System.out.println("\nSolved Sudoku board:");
+        System.out.println(UserInterface.SOLVED_SUDOKU);
         System.out.println(board);
         return board;
     }
