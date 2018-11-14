@@ -11,16 +11,27 @@ public class SudokuAlgorithmTestSuite {
         SudokuAlgorithm algorithm = new SudokuAlgorithm(board);
         //When
         algorithm.solveSudoku();
+        int sumOfValues = algorithm.streamElements()
+                .map(SudokuElement::getValue)
+                .mapToInt(Integer::intValue).sum();
         //Then
+        Assert.assertEquals(405, sumOfValues);
+        Assert.assertFalse(algorithm.isNotSolved());
+    }
 
-    }    @Test
+    @Test
     public void should_return_solved_sudoku_board_when_board_is_empty() {
         //Given
         SudokuBoard board = new SudokuBoard();
         SudokuAlgorithm algorithm = new SudokuAlgorithm(board);
         //When
         algorithm.solveSudoku();
+        int sumOfValues = algorithm.streamElements()
+                .map(SudokuElement::getValue)
+                .mapToInt(Integer::intValue).sum();
         //Then
+        Assert.assertEquals(405, sumOfValues);
+        Assert.assertFalse(algorithm.isNotSolved());
     }
 
     @Test
@@ -31,7 +42,7 @@ public class SudokuAlgorithmTestSuite {
         //When
         long numberOfElements = algorithm.streamElements().count();
         //Then
-        Assert.assertEquals(81,numberOfElements);
+        Assert.assertEquals(81, numberOfElements);
     }
 
     @Test
