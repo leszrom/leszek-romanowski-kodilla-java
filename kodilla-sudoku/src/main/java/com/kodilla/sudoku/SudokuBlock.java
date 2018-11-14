@@ -2,29 +2,30 @@ package com.kodilla.sudoku;
 
 public class SudokuBlock {
     public static int getBlockNumber(int row, int column) {
-        int blockNumber = 0;
 
-        if(1 <= row && row <= 3 && 1 <= column && column <= 3)
-            blockNumber = 1;
-        else if (1 <= row && row <= 3 && 4 <= column && column <= 6)
-            blockNumber = 2;
-        else if (1 <= row && row <= 3 && 7 <= column && column <= 9)
-            blockNumber = 3;
-
-        else if(4 <= row && row <= 6 && 1 <= column && column <= 3)
-            blockNumber = 4;
-        else if (4 <= row && row <= 6 && 4 <= column && column <= 6)
-            blockNumber = 5;
-        else if (4 <= row && row <= 6 && 7 <= column && column <= 9)
-            blockNumber = 6;
-
-        else if(7 <= row && row <= 9 && 1 <= column && column <= 3)
-            blockNumber = 7;
-        else if (7 <= row && row <= 9 && 4 <= column && column <= 6)
-            blockNumber = 8;
-        else if (7 <= row && row <= 9 && 7 <= column && column <= 9)
-            blockNumber = 9;
-
-        return blockNumber;
+        if (row <= 3) {
+            if (column <= 3) {
+                return 1;
+            } else if (column <= 6) {
+                return 2;
+            } else if (column <= 9)
+                return 3;
+        } else if (row <= 6) {
+            if (column <= 3) {
+                return 4;
+            } else if (column <= 6) {
+                return 5;
+            } else if (column <= 9)
+                return 6;
+        } else if (row <= 9) {
+            if (column <= 3) {
+                return 7;
+            } else if (column <= 6) {
+                return 8;
+            } else if (column <= 9) {
+                return 9;
+            }
+        }
+        return 0;
     }
 }
