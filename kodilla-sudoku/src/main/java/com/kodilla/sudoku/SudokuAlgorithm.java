@@ -49,7 +49,7 @@ public class SudokuAlgorithm {
         return insertedGuessedValue.orElse(false);
     }
 
-    public SudokuBoard solveSudoku() {
+    public void solveSudoku() {
         System.out.println(board);
         while (isNotSolved()) {
             while (insertedWithoutGuessing()) {
@@ -65,7 +65,6 @@ public class SudokuAlgorithm {
         }
         System.out.println(UserInterface.SOLVED_SUDOKU);
         System.out.println(board);
-        return board;
     }
 
     private SudokuElement addToBacktrack(SudokuBoard board, SudokuElement element){
