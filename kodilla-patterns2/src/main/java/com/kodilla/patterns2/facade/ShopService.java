@@ -34,7 +34,7 @@ public class ShopService {
         return orderId;
     }
 
-    public void addItem(long orderId, Long productId, double quantity) {
+    public void addItem(Long orderId, Long productId, double quantity) {
         orders.stream()
                 .filter(order -> order.getOrderId().equals(orderId))
                 .forEach(order -> order.getItems().add(new Item(productId, quantity)));
