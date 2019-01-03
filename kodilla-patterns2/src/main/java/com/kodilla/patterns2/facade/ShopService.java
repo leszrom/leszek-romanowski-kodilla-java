@@ -28,7 +28,7 @@ public class ShopService {
                     .max(Long::compare)
                     .map(orderId -> orderId++)
                     .orElse(1L);
-            orders.add(new Order(newOrderId, userId, productService));
+            orders.add(new Order(newOrderId, userId));
         }
         return newOrderId;
     }
@@ -55,7 +55,11 @@ public class ShopService {
         return orders.stream()
                 .filter(order -> order.getOrderId().equals(orderId))
                 .findFirst()
-                .map(Order::calculateValue)
+                .map(order -> order.getItems().stream()
+                        .map(item -> productService.getPrice(item.getProductId())
+                                .multiply(BigDecimal.valueOf(item.getQuantity())))
+                        .reduce(BigDecimal.ZERO, BigDecimal::add)
+                )
                 .orElse(BigDecimal.ZERO);
     }
 
