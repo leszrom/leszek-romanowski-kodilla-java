@@ -21,16 +21,16 @@ public class ShopService {
     }
 
     public Long openOrder(Long userId) {
-        Long orderId = -1L;
+        Long newOrderId = -1L;
         if (authenticator.isAuthenticated(userId)) {
-            Long maxOrderId = orders.stream()
+            newOrderId = orders.stream()
                     .map(Order::getOrderId)
                     .max(Long::compare)
-                    .orElse(0L);
-            orderId = maxOrderId + 1;
-            orders.add(new Order(orderId, userId, productService));
+                    .map(orderId -> orderId++)
+                    .orElse(1L);
+            orders.add(new Order(newOrderId, userId, productService));
         }
-        return orderId;
+        return newOrderId;
     }
 
     public void addItem(Long orderId, Long productId, double quantity) {
