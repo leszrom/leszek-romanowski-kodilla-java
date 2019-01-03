@@ -61,20 +61,17 @@ public class ShopService {
     }
 
     public boolean doPayment(Long orderId) {
-        Iterator<Order> orderIterator = orders.stream()
+        Random generator = new Random();
+        return orders.stream()
                 .filter(order -> order.getOrderId().equals(orderId))
-                .iterator();
-        while (orderIterator.hasNext()) {
-            Order theOrder = orderIterator.next();
-            if (theOrder.isPaid()) {
-                return true;
-            } else {
-                Random generator = new Random();
-                theOrder.setPaid(generator.nextBoolean());
-                return theOrder.isPaid();
-            }
-        }
-        return false;
+                .findFirst()
+                .map(order -> {
+                    if (!order.isPaid()) {
+                        order.setPaid(generator.nextBoolean());
+                    }
+                    return order.isPaid();
+                })
+                .orElse(false);
     }
 
     public boolean verifyOrder(Long orderId) {
