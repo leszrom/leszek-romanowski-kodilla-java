@@ -53,14 +53,11 @@ public class ShopService {
     }
 
     public BigDecimal calculateValue(Long orderId) {
-        Iterator<Order> orderIterator = orders.stream()
+        return orders.stream()
                 .filter(order -> order.getOrderId().equals(orderId))
-                .iterator();
-        while (orderIterator.hasNext()) {
-            Order theOrder = orderIterator.next();
-            return theOrder.calculateValue();
-        }
-        return BigDecimal.ZERO;
+                .findFirst()
+                .map(Order::calculateValue)
+                .orElse(BigDecimal.ZERO);
     }
 
     public boolean doPayment(Long orderId) {
