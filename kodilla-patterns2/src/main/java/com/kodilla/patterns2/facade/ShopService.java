@@ -102,12 +102,9 @@ public class ShopService {
     }
 
     public void cancelOrder(Long orderId) {
-        Iterator<Order> orderIterator = orders.stream()
+        orders.stream()
                 .filter(order -> order.getOrderId().equals(orderId))
-                .iterator();
-        while (orderIterator.hasNext()) {
-            Order theOrder = orderIterator.next();
-            orders.remove(theOrder);
-        }
+                .findFirst()
+                .map(orders::remove);
     }
 }
