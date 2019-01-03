@@ -10,9 +10,13 @@ import java.math.BigDecimal;
 
 @Service
 public final class OrderFacade {
-    @Autowired
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderFacade.class);
     private ShopService shopService;
-    public static final Logger LOGGER = LoggerFactory.getLogger(OrderFacade.class);
+
+    @Autowired
+    public OrderFacade(ShopService shopService) {
+        this.shopService = shopService;
+    }
 
     public void processOrder(final OrderDto orderDto, final Long userId) throws OrderProcessingException {
         boolean wasError = false;
