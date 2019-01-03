@@ -89,17 +89,16 @@ public class ShopService {
     }
 
     public boolean submitOrder(Long orderId) {
-        Iterator<Order> orderIterator = orders.stream()
+        return orders.stream()
                 .filter(order -> order.getOrderId().equals(orderId))
-                .iterator();
-        while (orderIterator.hasNext()) {
-            Order theOrder = orderIterator.next();
-            if (theOrder.isVerified()) {
-                theOrder.setSubmitted(true);
-            }
-            return theOrder.isSubmitted();
-        }
-        return false;
+                .findFirst()
+                .map(order -> {
+                    if (order.isVerified()) {
+                        order.setSubmitted(true);
+                    }
+                    return order.isSubmitted();
+                })
+                .orElse(false);
     }
 
     public void cancelOrder(Long orderId) {
