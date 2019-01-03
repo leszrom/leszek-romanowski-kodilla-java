@@ -41,20 +41,15 @@ public class ShopService {
     }
 
     public boolean removeItem(Long orderId, Long productId) {
-        Iterator<Order> orderIterator = orders.stream()
+        return orders.stream()
                 .filter(order -> order.getOrderId().equals(orderId))
-                .iterator();
-        while (orderIterator.hasNext()) {
-            Order theOrder = orderIterator.next();
-            int orderSize = theOrder.getItems().size();
-            for (int n = 0; n < orderSize; n++) {
-                if (theOrder.getItems().get(n).getProductId().equals(productId)) {
-                    theOrder.getItems().remove(n);
-                    return true;
-                }
-            }
-        }
-        return false;
+                .findFirst()
+                .map(order -> order.getItems().stream()
+                        .filter(item -> item.getProductId().equals(productId))
+                        .findFirst()
+                        .map(item -> order.getItems().remove(item))
+                        .orElse(false))
+                .orElse(false);
     }
 
     public BigDecimal calculateValue(Long orderId) {
