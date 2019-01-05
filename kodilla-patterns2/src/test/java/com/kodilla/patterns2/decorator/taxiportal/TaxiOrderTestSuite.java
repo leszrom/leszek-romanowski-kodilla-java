@@ -103,6 +103,6 @@ public class TaxiOrderTestSuite {
         String description = theOrder.getDescription();
 
         //Then
-        Assert.assertEquals("Drive a course by MyTaxi Network + child sit", description);
+        Assert.assertEquals("Drive a course by MyTaxi Network + child seat", description);
     }
 }
