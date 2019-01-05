@@ -105,4 +105,35 @@ public class TaxiOrderTestSuite {
         //Then
         Assert.assertEquals("Drive a course by MyTaxi Network + child seat", description);
     }
+
+    @Test
+    public void should_return_Name() {
+        //Given
+        TaxiOrder theOrder = new BasicTaxiOrder();
+        theOrder = new TaxiNetworkOrderDecorator(theOrder);
+        theOrder = new VipCarDecorator(theOrder);
+        theOrder = new ChildSeatDecorator(theOrder);
+
+        //When
+        BigDecimal theCost = theOrder.getCost();
+
+        //Then
+        Assert.assertEquals(new BigDecimal(52), theCost);
+
+    }
+
+    @Test
+    public void should_return_Name_dsf() {
+        //Given
+        TaxiOrder theOrder = new BasicTaxiOrder();
+        theOrder = new TaxiNetworkOrderDecorator(theOrder);
+        theOrder = new VipCarDecorator(theOrder);
+        theOrder = new ChildSeatDecorator(theOrder);
+
+        //When
+        String description = theOrder.getDescription();
+
+        //Then
+        Assert.assertEquals("Drive a course by Taxi Network variant VIP + child seat", description);
+    }
 }
