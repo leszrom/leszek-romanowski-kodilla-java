@@ -3,7 +3,7 @@ package com.kodilla.patterns2.decorator.taxiportal;
 import java.math.BigDecimal;
 
 public interface TaxiOrder {
-    BigDecimal taxiCosts();
+    BigDecimal getCost();
 
     String getDescription();
 }
