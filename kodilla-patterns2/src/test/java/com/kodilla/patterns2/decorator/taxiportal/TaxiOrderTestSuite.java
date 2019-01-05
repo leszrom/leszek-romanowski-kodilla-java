@@ -81,24 +81,28 @@ public class TaxiOrderTestSuite {
     @Test
     public void should_return_cost_of_taxi_order_from_MyTaxi_Network() {
         //Given
-        TaxiOrder theOrder = new MyTaxiNetworkOrderDecorator(new BasicTaxiOrder());
+        TaxiOrder theOrder = new BasicTaxiOrder();
+        theOrder = new MyTaxiNetworkOrderDecorator(theOrder);
+        theOrder = new ChildSeatDecorator(theOrder);
 
         //When
         BigDecimal theCost = theOrder.getCost();
 
         //Then
-        Assert.assertEquals(new BigDecimal(35), theCost);
+        Assert.assertEquals(new BigDecimal(37), theCost);
     }
 
     @Test
     public void should_return_description_of_taxi_order_from_MyTaxi_Network() {
         //Given
-        TaxiOrder theOrder = new MyTaxiNetworkOrderDecorator(new BasicTaxiOrder());
+        TaxiOrder theOrder = new BasicTaxiOrder();
+        theOrder = new MyTaxiNetworkOrderDecorator(theOrder);
+        theOrder = new ChildSeatDecorator(theOrder);
 
         //When
         String description = theOrder.getDescription();
 
         //Then
-        Assert.assertEquals("Drive a course by MyTaxi Network", description);
+        Assert.assertEquals("Drive a course by MyTaxi Network + child sit", description);
     }
 }
