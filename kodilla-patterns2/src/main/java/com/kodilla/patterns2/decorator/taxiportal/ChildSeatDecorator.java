@@ -12,6 +12,6 @@ public class ChildSeatDecorator extends AbstractTaxiOrderDecorator {
     }
 
     public String getDescription() {
-        return super.getDescription().concat(" + child sit");
+        return super.getDescription().concat(" + child seat");
     }
 }
