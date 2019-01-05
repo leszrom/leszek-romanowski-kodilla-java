@@ -29,4 +29,28 @@ public class TaxiOrderTestSuite {
         //Then
         Assert.assertEquals("Drive a course", description);
     }
+
+    @Test
+    public void should_return_cost_of_taxi_order_from_Taxi_Network() {
+        //Given
+        TaxiOrder theOrder = new TaxiNetworkOrderDecorator(new BasicTaxiOrder());
+
+        //When
+        BigDecimal theCost = theOrder.getCost();
+
+        //Then
+        Assert.assertEquals(new BigDecimal(40), theCost);
+    }
+
+    @Test
+    public void should_return_description_of_taxi_order_from_Taxi_Network() {
+        //Given
+        TaxiOrder theOrder = new TaxiNetworkOrderDecorator(new BasicTaxiOrder());
+
+        //When
+        String description = theOrder.getDescription();
+
+        //Then
+        Assert.assertEquals("Drive a course by Taxi Network", description);
+    }
 }
