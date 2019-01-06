@@ -22,4 +22,14 @@ public class Calculator {
         }
         return x / y;
     }
+
+    public BigDecimal factorial(BigDecimal n) {
+        if (n.compareTo(BigDecimal.ONE) > 0) {
+            return n.multiply(factorial(n.subtract(BigDecimal.ONE)));
+        } else if (n.equals(BigDecimal.ONE) || n.equals(BigDecimal.ZERO)) {
+            return BigDecimal.ONE;
+        } else {
+            throw new ArithmeticException("Factorial argument is negative!");
+        }
+    }
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CalculatorTestSuite {
@@ -48,12 +50,22 @@ public class CalculatorTestSuite {
     }
 
     @Test
-    public void should_return_Div() {
+    public void should_return_dividing_result() {
         //Given
         //When
         double result = calculator.div(15, 5);
         //Then
         LOGGER.info("Testing div method");
         Assert.assertEquals(3, result, 0);
+    }
+
+    @Test
+    public void should_return_factorial_result() {
+        //Given
+        //When
+        BigDecimal result = calculator.factorial(new BigDecimal(5));
+        //Then
+        LOGGER.info("Testing factorial method");
+        Assert.assertEquals(new BigDecimal(120), result);
     }
 }
