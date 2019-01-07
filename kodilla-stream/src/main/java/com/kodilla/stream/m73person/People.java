@@ -3,7 +3,7 @@ package com.kodilla.stream.m73person;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class People {
+public class People {
     public List<String> getList() {
         final List<String> theList = new ArrayList<>();
         theList.add("John Smith");
