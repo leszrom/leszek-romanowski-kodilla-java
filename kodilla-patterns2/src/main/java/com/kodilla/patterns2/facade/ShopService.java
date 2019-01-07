@@ -1,5 +1,6 @@
 package com.kodilla.patterns2.facade;
 
+import com.kodilla.patterns2.facade.api.OrderProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +21,16 @@ public class ShopService {
         this.productService = productService;
     }
 
-    public Long openOrder(Long userId) {
-        Long newOrderId = -1L;
+    public Long openOrder(Long userId) throws OrderProcessingException {
         if (authenticator.isAuthenticated(userId)) {
-            newOrderId = orders.stream()
+            Long newOrderId = orders.stream()
                     .map(Order::getOrderId)
                     .max(Long::compare)
                     .map(orderId -> orderId++)
                     .orElse(1L);
             orders.add(new Order(newOrderId, userId));
-        }
-        return newOrderId;
+            return newOrderId;
+        } else throw new OrderProcessingException(OrderProcessingException.ERR_NOT_AUTHORISED);
     }
 
     public void addItem(Long orderId, Long productId, double quantity) {
