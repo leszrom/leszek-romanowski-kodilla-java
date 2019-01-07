@@ -18,45 +18,39 @@ public final class OrderFacade {
         this.shopService = shopService;
     }
 
-    public void processOrder(final OrderDto orderDto, final Long userId) throws OrderProcessingException {
-        boolean wasError = false;
-        long orderId = shopService.openOrder(userId);
-        LOGGER.info("Registering new order, ID: " + orderId);
-        if (orderId < 0) {
-            LOGGER.error(OrderProcessingException.ERR_NOT_AUTHORISED);
-            wasError = true;
-            throw new OrderProcessingException(OrderProcessingException.ERR_NOT_AUTHORISED);
-        }
+    public void processOrder(final OrderDto orderDto, final Long userId) {
+        long orderId = -1;
         try {
-            for (ItemDto orderItem : orderDto.getItems()) {
-                LOGGER.info("Adding item " + orderItem.getProductId() + ", " + orderItem.getQuantity() + " pcs");
-                shopService.addItem(orderId, orderItem.getProductId(), orderItem.getQuantity());
+            LOGGER.info("Registering new order..");
+            orderId = shopService.openOrder(userId);
+            LOGGER.info("Registered new order, ID: " + orderId);
+
+            for (ItemDto itemDto : orderDto.getItems()) {
+                LOGGER.info("Adding item " + itemDto.getProductId() + ", " + itemDto.getQuantity() + " pcs");
+                shopService.addItem(orderId, itemDto.getProductId(), itemDto.getQuantity());
             }
+
             BigDecimal value = shopService.calculateValue(orderId);
             LOGGER.info("Order value is " + value + " USD");
+
             if (!shopService.doPayment(orderId)) {
-                LOGGER.error(OrderProcessingException.ERR_PAYMENT_REJECTED);
-                wasError = true;
                 throw new OrderProcessingException(OrderProcessingException.ERR_PAYMENT_REJECTED);
             }
             LOGGER.info("Payment for order was done");
             if (!shopService.verifyOrder(orderId)) {
-                LOGGER.error(OrderProcessingException.ERR_VERIFICATION_ERROR);
-                wasError = true;
                 throw new OrderProcessingException(OrderProcessingException.ERR_VERIFICATION_ERROR);
             }
             LOGGER.info("Order is ready to submit");
             if (!shopService.submitOrder(orderId)) {
-                LOGGER.error(OrderProcessingException.ERR_SUBMITTING_ERROR);
-                wasError = true;
                 throw new OrderProcessingException(OrderProcessingException.ERR_SUBMITTING_ERROR);
             }
             LOGGER.info("Order " + orderId + " submitted");
-        } finally {
-            if (wasError) {
+        } catch (OrderProcessingException e) {
+            if (orderId > 0) {
+                LOGGER.info(e.getMessage());
                 LOGGER.info("Cancelling order " + orderId);
                 shopService.cancelOrder(orderId);
-            }
+            } else LOGGER.info(e.getMessage());
         }
     }
 }
