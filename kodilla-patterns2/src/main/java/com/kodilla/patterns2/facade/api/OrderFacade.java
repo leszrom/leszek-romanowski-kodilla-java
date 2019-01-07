@@ -4,12 +4,14 @@ import com.kodilla.patterns2.facade.ShopService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@EnableAspectJAutoProxy
 @Service
-public final class OrderFacade {
+public class OrderFacade {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderFacade.class);
     private ShopService shopService;
 
@@ -18,11 +20,10 @@ public final class OrderFacade {
         this.shopService = shopService;
     }
 
-    public void processOrder(final OrderDto orderDto, final Long userId) {
-        long orderId = -1;
-        try {
+    public void processOrder(final OrderDto orderDto, final Long userId) throws OrderProcessingException {
+
             LOGGER.info("Registering new order..");
-            orderId = shopService.openOrder(userId);
+            long orderId = shopService.openOrder(userId);
             LOGGER.info("Registered new order, ID: " + orderId);
 
             for (ItemDto itemDto : orderDto.getItems()) {
@@ -45,12 +46,5 @@ public final class OrderFacade {
                 throw new OrderProcessingException(OrderProcessingException.ERR_SUBMITTING_ERROR);
             }
             LOGGER.info("Order " + orderId + " submitted");
-        } catch (OrderProcessingException e) {
-            if (orderId > 0) {
-                LOGGER.info(e.getMessage());
-                LOGGER.info("Cancelling order " + orderId);
-                shopService.cancelOrder(orderId);
-            } else LOGGER.info(e.getMessage());
-        }
     }
 }
