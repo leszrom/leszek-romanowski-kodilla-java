@@ -1,11 +1,9 @@
 package com.kodilla.patterns2.facade;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private ProductService productService;
     private final List<Item> items = new ArrayList<>();
     private final Long orderId;
     private final Long userId;
@@ -13,19 +11,9 @@ public class Order {
     private boolean isVerified = false;
     private boolean isSubmitted = false;
 
-    public Order(Long orderId, Long userId, ProductService productService) {
+    public Order(Long orderId, Long userId) {
         this.orderId = orderId;
         this.userId = userId;
-        this.productService = productService;
-    }
-
-    public BigDecimal calculateValue() {
-        BigDecimal sum = BigDecimal.ZERO;
-        for (Item item : items) {
-            sum = sum.add(productService.getPrice(item.getProductId()))
-                    .multiply(new BigDecimal(item.getQuantity()));
-        }
-        return sum;
     }
 
     public List<Item> getItems() {

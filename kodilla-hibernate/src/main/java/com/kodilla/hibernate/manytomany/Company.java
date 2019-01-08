@@ -12,10 +12,15 @@ import java.util.List;
         resultClass = Company.class
 )
 
-@NamedQuery(
-        name = "Company.retrieveCompaniesWithFirstThreeChars",
-        query = "FROM Company WHERE SUBSTRING (name,1,3) = :CHARS"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "Company.retrieveCompaniesWithFirstThreeChars",
+                query = "FROM Company WHERE SUBSTRING (name,1,3) = :CHARS"),
+        @NamedQuery(
+                name = "Company.retrieveCompaniesThatNamesContainString",
+                query = "FROM Company WHERE name LIKE CONCAT('%',:ARG,'%')")
+})
+
 
 @Entity
 @Table(name = "COMPANIES")

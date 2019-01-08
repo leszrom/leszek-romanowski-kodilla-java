@@ -1,9 +1,6 @@
 package com.kodilla.patterns2.facade;
 
-import com.kodilla.patterns2.facade.api.ItemDto;
-import com.kodilla.patterns2.facade.api.OrderDto;
-import com.kodilla.patterns2.facade.api.OrderFacade;
-import com.kodilla.patterns2.facade.api.OrderProcessingException;
+import com.kodilla.patterns2.facade.api.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +19,10 @@ public class ShopServiceTestSuite {
 
     @Test
     public void testShopServiceSubmitOrder() {
-        long orderId = shopService.openOrder(1L);
-        System.out.println("Registering new order, ID: " + orderId);
-        if (orderId > 0) {
+        try {
+            long orderId = shopService.openOrder(1L);
+            System.out.println("Registering new order, ID: " + orderId);
+
             shopService.addItem(orderId, 10L, 2);
             System.out.println("Adding item: 10, 2 pcs");
             shopService.addItem(orderId, 216L, 1);
@@ -59,7 +57,8 @@ public class ShopServiceTestSuite {
                 shopService.cancelOrder(orderId);
                 System.out.println("Order is cancelled");
             }
-        } else {
+        } catch (OrderProcessingException e) {
+            System.out.println(e.getMessage());
             System.out.println("Access denied. User is not authenticated.");
         }
     }
@@ -71,11 +70,11 @@ public class ShopServiceTestSuite {
         order.addItem(new ItemDto(216L, 1));
         order.addItem(new ItemDto(25L, 1));
         order.addItem(new ItemDto(11L, 3));
+
         try {
             orderFacade.processOrder(order, 1L);
         } catch (OrderProcessingException e) {
-            // business exception - should be handle in real application
+            //
         }
     }
-
 }

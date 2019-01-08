@@ -53,14 +53,19 @@ public class CompanyDaoTestSuite {
 
         //When
         List<Employee> mrSmiths = employeeDao.retrieveEmployeesWithLastName("Smith");
+        List<Employee> luEmployees = employeeDao.retrieveEmployeesThatNamesContainString("lu");
         List<Company> softCompanies = companyDao.retrieveCompaniesThatNamesStartWith("soft");
         List<Company> threeCharsCompanies = companyDao.retrieveCompaniesWithFirstThreeChars("sil");
+        List<Company> twareCompanies = companyDao.retrieveCompaniesThatNamesContainString("tware");
 
         //Then
         try {
             Assert.assertEquals(2, mrSmiths.size());
+            Assert.assertEquals(1, luEmployees.size());
             Assert.assertEquals(2, softCompanies.size());
             Assert.assertEquals(1, threeCharsCompanies.size());
+            Assert.assertEquals(1, twareCompanies.size());
+
         } finally {
             //CleanUp
             companyDao.delete(id);
