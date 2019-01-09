@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MedianaAdapter extends MedianaAdaptee implements Classifier {
+public class MedianAdapter extends MedianAdaptee implements Classifier {
     @Override
     public int publicationYearMadian(Set<BookA> bookSet) {
         Map<BookSignature, BookB> books = bookSet.stream()

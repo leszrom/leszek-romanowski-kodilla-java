@@ -7,7 +7,7 @@ import com.kodilla.patterns2.adapter.bookclassifier.libraryb.Statistics;
 
 import java.util.Map;
 
-public class MedianaAdaptee implements BookStatistics {
+public class MedianAdaptee implements BookStatistics {
     private Statistics statistics = new Statistics();
 
     @Override
