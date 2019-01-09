@@ -1,11 +1,11 @@
 package com.kodilla.patterns2.adapter.bookclassifier.libraryb;
 
-public class Book {
+public class BookB {
     private final String author;
     private final String title;
     private final int publicationYear;
 
-    public Book(final String author, final String title, final int publicationYear) {
+    public BookB(final String author, final String title, final int publicationYear) {
         this.author = author;
         this.title = title;
         this.publicationYear = publicationYear;

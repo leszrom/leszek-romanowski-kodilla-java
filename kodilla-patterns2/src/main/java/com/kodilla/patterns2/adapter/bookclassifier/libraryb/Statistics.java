@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Statistics implements BookStatistics {
     @Override
-    public int averagePublicationYear(Map<BookSignature, Book> books) {
+    public int averagePublicationYear(Map<BookSignature, BookB> books) {
         return (int) books.entrySet().stream()
                 .map(entrySet -> entrySet.getValue().getPublicationYear())
                 .mapToInt(Integer::intValue)
@@ -14,13 +14,13 @@ public class Statistics implements BookStatistics {
     }
 
     @Override
-    public int medianPublicationYear(Map<BookSignature, Book> books) {
+    public int medianPublicationYear(Map<BookSignature, BookB> books) {
         if (books.size() == 0) {
             return 0;
         }
         int[] years = new int[books.size()];
         int n = 0;
-        for (Map.Entry<BookSignature, Book> entry : books.entrySet()) {
+        for (Map.Entry<BookSignature, BookB> entry : books.entrySet()) {
             years[n] = entry.getValue().getPublicationYear();
             n++;
         }
