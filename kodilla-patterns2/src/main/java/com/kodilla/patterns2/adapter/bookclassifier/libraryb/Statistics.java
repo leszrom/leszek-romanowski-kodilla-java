@@ -6,14 +6,11 @@ import java.util.Map;
 public class Statistics implements BookStatistics {
     @Override
     public int averagePublicationYear(Map<BookSignature, Book> books) {
-        if (books.size() == 0) {
-            return 0;
-        }
-        int sum = 0;
-        for (Map.Entry<BookSignature, Book> entry : books.entrySet()) {
-            sum += entry.getValue().getPublicationYear();
-        }
-        return sum / books.size();
+        return (int) books.entrySet().stream()
+                .map(entrySet -> entrySet.getValue().getPublicationYear())
+                .mapToInt(Integer::intValue)
+                .summaryStatistics()
+                .getAverage();
     }
 
     @Override
