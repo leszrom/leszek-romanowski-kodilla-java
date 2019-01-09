@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class MedianAdapter extends MedianAdaptee implements Classifier {
     @Override
-    public int publicationYearMadian(Set<BookA> bookSet) {
+    public int publicationYearMedian(Set<BookA> bookSet) {
         Map<BookSignature, BookB> books = bookSet.stream()
                 .collect(Collectors.toMap(
                         bookA -> new BookSignature(bookA.getSignature()),
