@@ -47,4 +47,16 @@ public class MedianAdapterTestSuite {
         Assert.assertEquals(2000, median);
     }
 
+    @Test
+    public void should_return_zero_when_there_is_no_books() {
+        //Given
+        MedianAdapter medianAdapter = new MedianAdapter();
+        Set<BookA> books = new HashSet<>();
+
+        //When
+        int median = medianAdapter.publicationYearMedian(books);
+
+        //Then
+        Assert.assertEquals(0, median);
+    }
 }
