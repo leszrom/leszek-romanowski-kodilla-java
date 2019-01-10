@@ -1,7 +1,8 @@
 package com.kodilla.patterns2.adapter.bookclassifier.libraryb;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Statistics implements BookStatistics {
     @Override
@@ -15,20 +16,14 @@ public class Statistics implements BookStatistics {
 
     @Override
     public int medianPublicationYear(Map<BookSignature, BookB> books) {
-        if (books.size() == 0) {
-            return 0;
-        }
-        int[] years = new int[books.size()];
-        int n = 0;
-        for (Map.Entry<BookSignature, BookB> entry : books.entrySet()) {
-            years[n] = entry.getValue().getPublicationYear();
-            n++;
-        }
-        Arrays.sort(years);
-        if (years.length % 2 == 0) {
-            return years[(int) (years.length / 2 + 0.5)];
-        } else {
-            return years[years.length / 2];
-        }
+        List<Integer> sortedYears = books.entrySet().stream()
+                .map(entrySet -> entrySet.getValue().getPublicationYear())
+                .sorted()
+                .collect(Collectors.toList());
+
+        return sortedYears.stream()
+                .skip(sortedYears.size() / 2)
+                .findFirst()
+                .orElse(0);
     }
 }
