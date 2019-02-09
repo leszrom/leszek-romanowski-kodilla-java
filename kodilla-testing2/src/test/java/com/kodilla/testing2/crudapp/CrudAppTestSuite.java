@@ -82,14 +82,12 @@ public class CrudAppTestSuite {
 
         driverTrello.findElements(By.xpath("//a[contains(@class,\"board-tile\")]")).stream()
                 .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Kodilla Application\"]")).size() > 0)
-                .forEach(aHref -> aHref.click());
+                .forEach(WebElement::click);
 
         Thread.sleep(2000);
 
         result = driverTrello.findElements(By.xpath("//span")).stream()
-                .filter(theSpan -> theSpan.getText().contains(taskName))
-                .collect(Collectors.toList())
-                .size() > 0;
+                .anyMatch(theSpan -> theSpan.getText().contains(taskName));
 
         driverTrello.close();
 
