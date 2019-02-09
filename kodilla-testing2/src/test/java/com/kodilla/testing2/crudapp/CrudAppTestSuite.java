@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class CrudAppTestSuite {
     private static final String BASE_URL = "https://leszrom.github.io/";
@@ -94,6 +93,22 @@ public class CrudAppTestSuite {
         return result;
     }
 
+    private void removeTaskFromCrudApp(String taskName) throws InterruptedException {
+        driver.navigate().refresh();
+
+        while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
+
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                                .getText().equals(taskName))
+                .forEach(theForm -> {
+                    WebElement buttonDelete = theForm.findElement(By.xpath(".//button[text()='Delete']"));
+                    buttonDelete.click();
+                });
+        Thread.sleep(2000);
+    }
+
     @Test
     public void shouldCreateTrelloCard() throws InterruptedException {
         //Given
@@ -104,8 +119,10 @@ public class CrudAppTestSuite {
 
         //Then
         Assert.assertTrue(checkTaskExistsInTrello(taskName));
-    }
 
+        //CleanUp
+        removeTaskFromCrudApp(taskName);
+    }
 
     @After
     public void cleanUp() {
